@@ -36,6 +36,9 @@ body,
   width: 90%;
   margin: 0 auto;
 }
+.signin-form {
+  width: 100%;
+}
 .inputWrapper {
   margin: 1rem auto;
   width: 100%;

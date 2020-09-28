@@ -1,13 +1,13 @@
-import { Server, Model, Factory, belongsTo, hasMany, Response } from "miragejs";
-
+import { Server, Model, Factory, Response, belongsTo, hasMany } from "miragejs";
 import user from "./routes/user";
 import * as diary from "./routes/diary";
 
-export const handleErrors = (error: any, message = "An error occured") => {
+export const handleErrors = (error: any, message = "An error ocurred") => {
+  console.error("Error: ", error);
   return new Response(400, undefined, {
     data: {
-      isError: true,
       message,
+      isError: true,
     },
   });
 };
@@ -15,28 +15,32 @@ export const handleErrors = (error: any, message = "An error occured") => {
 export const setupServer = (env?: string): Server => {
   return new Server({
     environment: env ?? "development",
+
     models: {
       entry: Model.extend({
         diary: belongsTo(),
       }),
       diary: Model.extend({
+        entry: hasMany(),
         user: belongsTo(),
-        diary: hasMany(),
       }),
       user: Model.extend({
         diary: hasMany(),
       }),
     },
+
     factories: {
       user: Factory.extend({
-        username: "testuser",
+        username: "test",
         password: "password",
         email: "test@email.com",
       }),
     },
+
     seeds: (server): any => {
       server.create("user");
     },
+
     routes(): void {
       this.urlPrefix = "https://diaries.app";
 
