@@ -3,7 +3,6 @@ import user from "./routes/user";
 import * as diary from "./routes/diary";
 
 export const handleErrors = (error: any, message = "An error ocurred") => {
-  console.error("Error: ", error);
   return new Response(400, undefined, {
     data: {
       message,
@@ -15,7 +14,7 @@ export const handleErrors = (error: any, message = "An error ocurred") => {
 export const setupServer = (env?: string): Server => {
   return new Server({
     environment: env ?? "development",
-
+    logging: false,
     models: {
       entry: Model.extend({
         diary: belongsTo(),

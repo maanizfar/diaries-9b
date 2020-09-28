@@ -115,7 +115,12 @@ const Auth: FC = () => {
           </Typography>
           <form onSubmit={handleSubmit(submitForm)} className="signin-form">
             <div className="inputWrapper">
-              <input ref={register} name="username" placeholder="Username" />
+              <input
+                ref={register}
+                name="username"
+                placeholder="Username"
+                className="text-input"
+              />
               {errors && errors.username && (
                 <p className="error">{errors.username.message}</p>
               )}
@@ -127,6 +132,7 @@ const Auth: FC = () => {
                 name="password"
                 type="password"
                 placeholder="Password"
+                className="text-input"
               />
               {errors && errors.password && (
                 <p className="error">{errors.password.message}</p>
@@ -136,6 +142,7 @@ const Auth: FC = () => {
             {!isLogin && (
               <div className="inputWrapper">
                 <input
+                  className="text-input"
                   ref={register}
                   name="email"
                   placeholder="Email (optional)"

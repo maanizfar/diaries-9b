@@ -2,7 +2,6 @@ import React, { FC, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../rootReducer";
-import DiaryEntriesList from "../features/diary/DiaryEntriesList";
 import NewEntry from "../features/diary/NewEntry";
 
 const Auth = lazy(() => import("../features/auth/Auth"));
@@ -16,7 +15,7 @@ const App: FC = () => {
     <Router>
       <Switch>
         <Route exact path="/diary/:id">
-          <DiaryEntriesList />
+          <NewEntry />
         </Route>
         <Route exact path="/diary/:id/new">
           <NewEntry />

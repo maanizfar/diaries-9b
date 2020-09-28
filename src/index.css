@@ -43,19 +43,19 @@ body,
   margin: 1rem auto;
   width: 100%;
 }
-input:not([type="checkbox"]),
+.text-input,
 button {
   border-radius: 0.5rem;
   width: 100%;
 }
-input:not([type="checkbox"]),
+.text-input,
 textarea {
   border: 2px solid rgba(0, 0, 0, 0.1);
   padding: 1em;
   color: var(--text-color);
   transition: var(--transition);
 }
-input:not([type="checkbox"]):focus,
+.text-input:focus,
 textarea:focus {
   outline: none;
   border-color: var(--primary-color);
@@ -126,7 +126,7 @@ button:focus {
 }
 .editor textarea {
   width: 100%;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 260px);
 }
 .entries ul {
   list-style: none;
@@ -137,9 +137,12 @@ button:focus {
   padding: 0.5em;
   cursor: pointer;
 }
-.entries li:nth-child(even) {
-  background: rgba(0, 0, 0, 0.1);
+.active-entry {
+  background-color: #e6e6e6;
 }
+/* .entries li:nth-child(even) {
+  background: rgba(0, 0, 0, 0.1);
+} */
 
 @media (min-width: 768px) {
   .two-cols .left {

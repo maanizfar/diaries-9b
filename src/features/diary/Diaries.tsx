@@ -125,11 +125,23 @@ const Diaries: FC = () => {
       </div>
 
       <Grid container spacing={2} style={{ padding: "12px" }}>
-        {diaries.map((diary, idx) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={idx}>
-            <DiaryTile diary={diary} />
-          </Grid>
-        ))}
+        {diaries.length > 0 ? (
+          diaries.map((diary, idx) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={idx}>
+              <DiaryTile diary={diary} />
+            </Grid>
+          ))
+        ) : (
+          <Typography
+            component="p"
+            variant="body1"
+            color="error"
+            align="center"
+            style={{ width: "100%" }}
+          >
+            You have no diaries
+          </Typography>
+        )}
       </Grid>
     </div>
   );

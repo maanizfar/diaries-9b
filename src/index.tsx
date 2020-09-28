@@ -6,9 +6,9 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "./index.css";
 
-if (process.env.NODE_ENV === "development") {
-  setupServer();
-}
+// if (process.env.NODE_ENV === "development") {
+setupServer(process.env.NODE_ENV);
+// }
 
 ReactDOM.render(
   <Provider store={store}>
