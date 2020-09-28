@@ -1,17 +1,18 @@
 import React, { FC } from "react";
 import Diaries from "../diary/Diaries";
-import Editor from "../entry/Editor";
+import NavBar from "../nav/NavBar";
+import { useLocation } from "react-router-dom";
 
 const Home: FC = () => {
+  const loc = useLocation();
+
+  console.log(loc);
+
   return (
-    <div className="two-cols">
-      <div className="left">
-        <Diaries />
-      </div>
-      <div className="right">
-        <Editor />
-      </div>
-    </div>
+    <>
+      <NavBar />
+      <Diaries />
+    </>
   );
 };
 

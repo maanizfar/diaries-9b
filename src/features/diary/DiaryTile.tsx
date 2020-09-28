@@ -21,6 +21,8 @@ import ListIcon from "@material-ui/icons/List";
 import Tooltip from "@material-ui/core/Tooltip";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "100%",
@@ -86,6 +88,7 @@ interface Props {
 
 const DiaryTile: FC<Props> = (props) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [diary, setDiary] = useState(props.diary);
   const [isEditing, setIsEditing] = useState(false);
@@ -118,15 +121,17 @@ const DiaryTile: FC<Props> = (props) => {
               variant="h3"
               align="center"
               color="textSecondary"
-              className="title"
+              // className="title"
               title="Click to edit"
               onClick={() => setIsEditing(true)}
               style={{
                 cursor: "pointer",
+                overflow: "hidden",
               }}
             >
               {isEditing ? (
                 <input
+                  maxLength={20}
                   value={diary.title}
                   onChange={(e) => {
                     setDiary({
@@ -146,22 +151,18 @@ const DiaryTile: FC<Props> = (props) => {
             </Typography>
           </Grid>
 
-          <Grid
-            item
-            xs={6}
-            sm={9}
-            className={classes.addEntryButton}
-            onClick={() => {
-              dispatch(setCanEdit(true));
-              dispatch(setActiveDiaryId(diary.id as string));
-              dispatch(setCurrentlyEditing(null));
-            }}
-          >
+          <Grid item xs={6} sm={9} className={classes.addEntryButton}>
             <Tooltip title="Add entry" aria-label="add entry">
               <Button
                 startIcon={<EditIcon />}
                 classes={{
                   root: classes.buttonRoot,
+                }}
+                onClick={() => {
+                  dispatch(setCanEdit(true));
+                  dispatch(setActiveDiaryId(diary.id as string));
+                  dispatch(setCurrentlyEditing(null));
+                  history.push(`diary/${diary.id}/new`);
                 }}
               >
                 <Hidden xsDown>Add Entry</Hidden>
